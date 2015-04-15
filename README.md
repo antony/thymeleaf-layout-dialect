@@ -50,6 +50,24 @@ templateengine.setTemplateResolver(templateresolver);
 templateengine.addDialect(new LayoutDialect());		// This line adds the dialect to Thymeleaf
 ```
 
+Alternately, using Ratpack's groovy DSL:
+
+```groovy
+class LayoutDialectModule extends AbstractModule {
+
+ @Override
+ protected void configure() {
+  Multibinder.newSetBinder(binder(), IDialect).addBinding().to(LayoutDialect)
+ }
+}
+
+ratpack {
+ bindings {
+  add new LayoutDialectModule()
+ }
+}
+```
+
 Or, for those using Spring configuration files:
 
 ```xml
